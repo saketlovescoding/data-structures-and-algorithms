@@ -35,6 +35,32 @@ rl.on("close", () => {
 });
 ```
 
+### Handling Multiline Input
+
+CSES problems often provide input across multiple lines. Our readline pattern collects **all lines** into an array, making multiline parsing straightforward:
+
+```typescript
+rl.on("line", (line) => lines.push(line));
+rl.on("close", () => {
+  const n = Number(lines[0]);           // first line: a single value
+  const nums = lines[1].split(" ").map(Number); // second line: space-separated values
+  // ...
+});
+```
+
+Each call to `rl.on("line", ...)` captures one line of input into the `lines` array. Once stdin closes, `lines[0]` is the first line, `lines[1]` is the second, and so on. This makes it easy to handle any input format — just index into `lines` by line number.
+
+To test multiline input locally:
+
+```bash
+# Use echo with newline
+echo "5
+1 2 3 5" | node dist/missing-number.js
+
+# Or use a file
+node dist/missing-number.js < input.txt
+```
+
 ### 2. Compile TypeScript to JavaScript
 
 ```bash

@@ -19,3 +19,4 @@ rl.on("close", () => {
 
   console.log(result.join(" "));
 });
+
