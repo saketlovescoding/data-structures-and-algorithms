@@ -23,4 +23,3 @@ rl.on("close", () => {
 
   console.log(ans);
 });
-

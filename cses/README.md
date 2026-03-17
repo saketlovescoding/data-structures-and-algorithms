@@ -100,6 +100,37 @@ cses/
 └── package.json   # npm scripts and dependencies
 ```
 
+## Notes
+
+### Printing Elements in a Single Line
+
+When a problem expects space-separated output on a single line (e.g., `1 3 5 2 4`), collect results into an array and use `array.join(" ")`:
+
+```typescript
+const ans: number[] = [];
+for (let i = 2; i <= n; i += 2) {
+  ans.push(i);
+}
+console.log(ans.join(" "));
+```
+
+Avoid printing each element individually with `process.stdout.write()` in a loop — `join()` is cleaner and avoids trailing space issues.
+
+### Parsing Space-Separated Input
+
+```typescript
+const nums: number[] = lines[1].split(" ").map(Number);
+```
+
+### Using BigInt for Large Numbers
+
+Some CSES problems involve numbers exceeding `Number.MAX_SAFE_INTEGER` (2^53 - 1). Use `BigInt` in those cases:
+
+```typescript
+const big = BigInt(lines[0]);
+console.log((big * 2n).toString());
+```
+
 ## Commands Reference
 
 | Command | Description |
