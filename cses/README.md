@@ -122,6 +122,25 @@ Avoid printing each element individually with `process.stdout.write()` in a loop
 const nums: number[] = lines[1].split(" ").map(Number);
 ```
 
+### Fast Output with Buffering
+
+For problems with many test cases (e.g., `t` queries), printing each answer with `console.log()` in a loop can cause TLE. Instead, buffer all answers into an array and write them once at the end:
+
+```typescript
+const outputBuffer: string[] = [];
+
+rl.on("line", (line) => {
+  // ... solve and push result
+  outputBuffer.push(ans.toString());
+});
+
+rl.on("close", () => {
+  process.stdout.write(outputBuffer.join("\n") + "\n");
+});
+```
+
+`process.stdout.write` with a single joined string is faster than many individual `console.log` calls, especially for large output.
+
 ### Using BigInt for Large Numbers
 
 Some CSES problems involve numbers exceeding `Number.MAX_SAFE_INTEGER` (2^53 - 1). Use `BigInt` in those cases:
