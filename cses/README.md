@@ -150,6 +150,20 @@ const big = BigInt(lines[0]);
 console.log((big * 2n).toString());
 ```
 
+### Getting Map Values Safely
+
+`Map.get()` returns `undefined` when the key doesn't exist, so TypeScript won't let you use it directly as a number. Use the nullish coalescing operator `??` to provide a default:
+
+```typescript
+const map: Map<number, number> = new Map();
+
+// map.get(key) returns number | undefined — can't assign directly to number
+let value: number = map.get(num) ?? 0;
+map.set(num, value + 1);
+```
+
+`?? 0` means "use the Map's value if it exists, otherwise fall back to `0`." This is cleaner than checking `has()` + `get()` separately.
+
 ## Commands Reference
 
 | Command | Description |

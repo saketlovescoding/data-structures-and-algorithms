@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const readline_1 = require("readline");
+const rl = (0, readline_1.createInterface)({ input: process.stdin });
+const lines = [];
+rl.on("line", (line) => lines.push(line));
+rl.on("close", () => {
+    const n = Number(lines[0]);
+});
